@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   DELAY                                                                 10/07/2026 20:39:59 PAGE 1   
+C51 COMPILER V9.54   DELAY                                                                 10/08/2026 14:34:38 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE DELAY
@@ -10,7 +10,7 @@ line level    source
 
    1          
    2          
-   3          void Delay(unsigned int xms)    
+   3          void Delay(unsigned int xms)    //@11.0592MHz 1ms STC-Y1
    4          {
    5   1        unsigned char i, j;
    6   1        while(xms)

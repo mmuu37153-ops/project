@@ -4,8 +4,8 @@
 
 void main()
 {
-	Timer0Init0();
-	Timer0Init1();
+	Timer0Init();
+	Timer1Init();
 	
 	while(1)
 	{

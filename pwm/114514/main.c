@@ -2,12 +2,14 @@
 #include "Delay.h"
 #include "Nixie.h"
 #include "timer.h"
+#include "key.h"
 
 sbit LED1=P2^0;
 sbit sg90=P2^1;
 
 unsigned char Counter,Compare;
 unsigned char Speed;
+unsigned char KeyNum;
 
 void main()
 {
@@ -17,11 +19,11 @@ void main()
 	Compare=15;
 	while(1)
 	{
-		if(P3_1==0)
+		KeyNum=Key();
+		if(KeyNum==1)
 		{
-			Delay(20);
-			while(P3_1==0);
-			Delay(20);
+
+			
 			if (Speed<10) Speed++;
 			
 			if(Speed==9){Compare=16;}

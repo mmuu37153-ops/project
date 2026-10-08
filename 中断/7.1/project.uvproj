@@ -369,14 +369,14 @@
               <FilePath>.\main.c</FilePath>
             </File>
             <File>
-              <FileName>delay.c</FileName>
+              <FileName>exint.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\delay.c</FilePath>
+              <FilePath>.\exint.c</FilePath>
             </File>
             <File>
-              <FileName>interrupt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\interrupt.c</FilePath>
+              <FileName>exint.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\exint.h</FilePath>
             </File>
           </Files>
         </Group>

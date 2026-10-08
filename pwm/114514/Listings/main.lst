@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   MAIN                                                                  10/07/2026 22:07:19 PAGE 1   
+C51 COMPILER V9.54   MAIN                                                                  10/08/2026 14:34:37 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
@@ -12,87 +12,89 @@ line level    source
    2          #include "Delay.h"
    3          #include "Nixie.h"
    4          #include "timer.h"
-   5          
-   6          sbit LED1=P2^0;
-   7          sbit sg90=P2^1;
-   8          
-   9          unsigned char Counter,Compare;
-  10          unsigned char Speed;
-  11          
-  12          void main()
-  13          {
-  14   1        Speed=8;
-  15   1        
-  16   1        Timer0Init0();
-  17   1        Compare=15;
-  18   1        while(1)
-  19   1        {
-  20   2          if(P3_1==0)
-  21   2          {
-  22   3            Delay(20);
-  23   3            while(P3_1==0);
-  24   3            Delay(20);
-  25   3            if (Speed<10) Speed++;
+   5          #include "key.h"
+   6          
+   7          sbit LED1=P2^0;
+   8          sbit sg90=P2^1;
+   9          
+  10          unsigned char Counter,Compare;
+  11          unsigned char Speed;
+  12          unsigned char KeyNum;
+  13          
+  14          void main()
+  15          {
+  16   1        Speed=8;
+  17   1        
+  18   1        Timer0Init0();
+  19   1        Compare=15;
+  20   1        while(1)
+  21   1        {
+  22   2          KeyNum=Key();
+  23   2          if(KeyNum==1)
+  24   2          {
+  25   3      
   26   3            
-  27   3            if(Speed==9){Compare=16;}
-  28   3            if(Speed==8){Compare=15;}
-  29   3            if(Speed==7){Compare=14;}
-  30   3            if(Speed==6){Compare=13;}
-  31   3            if(Speed==5){Compare=12;}
-  32   3            if(Speed==4){Compare=11;}
-  33   3            if(Speed==3){Compare=10;}
-  34   3            if(Speed==2){Compare=9;}
-  35   3            if(Speed==1){Compare=8;}
-  36   3            if(Speed==0){Compare=7;}
-  37   3          }
-  38   2          if(P3_0==0)
-  39   2          {
-  40   3            Delay(20);
-  41   3            while(P3_0==0);
+  27   3            if (Speed<10) Speed++;
+  28   3            
+  29   3            if(Speed==9){Compare=16;}
+  30   3            if(Speed==8){Compare=15;}
+  31   3            if(Speed==7){Compare=14;}
+  32   3            if(Speed==6){Compare=13;}
+  33   3            if(Speed==5){Compare=12;}
+  34   3            if(Speed==4){Compare=11;}
+  35   3            if(Speed==3){Compare=10;}
+  36   3            if(Speed==2){Compare=9;}
+  37   3            if(Speed==1){Compare=8;}
+  38   3            if(Speed==0){Compare=7;}
+  39   3          }
+  40   2          if(P3_0==0)
+  41   2          {
   42   3            Delay(20);
-  43   3            if (Speed>0) Speed--;
-  44   3      
-  45   3            if(Speed==9){Compare=16;}
-  46   3            if(Speed==8){Compare=15;}
-  47   3            if(Speed==7){Compare=14;}
-  48   3            if(Speed==6){Compare=13;}
-  49   3            if(Speed==5){Compare=12;}
-  50   3            if(Speed==4){Compare=11;}
-  51   3            if(Speed==3){Compare=10;}
-  52   3            if(Speed==2){Compare=9;}
-  53   3            if(Speed==1){Compare=8;}
-  54   3            if(Speed==0){Compare=7;}
-C51 COMPILER V9.54   MAIN                                                                  10/07/2026 22:07:19 PAGE 2   
+  43   3            while(P3_0==0);
+  44   3            Delay(20);
+  45   3            if (Speed>0) Speed--;
+  46   3      
+  47   3            if(Speed==9){Compare=16;}
+  48   3            if(Speed==8){Compare=15;}
+  49   3            if(Speed==7){Compare=14;}
+  50   3            if(Speed==6){Compare=13;}
+  51   3            if(Speed==5){Compare=12;}
+  52   3            if(Speed==4){Compare=11;}
+  53   3            if(Speed==3){Compare=10;}
+  54   3            if(Speed==2){Compare=9;}
+C51 COMPILER V9.54   MAIN                                                                  10/08/2026 14:34:37 PAGE 2   
 
-  55   3          }
-  56   2          Nixie(1,Speed);
-  57   2        }
-  58   1      }
-  59          
-  60          
-  61          void Timer0() interrupt 1
-  62          {
-  63   1        TL0 = 0xA4;   //设置定时初值
-  64   1        TH0 = 0xFF;   //设置定时初值
-  65   1        Counter++;
-  66   1        Counter%=200;
-  67   1        if (Counter<Compare)
-  68   1        {
-  69   2          sg90=1;
-  70   2        }
-  71   1        else
-  72   1        {
-  73   2          sg90=0;
-  74   2        }
-  75   1      }
+  55   3            if(Speed==1){Compare=8;}
+  56   3            if(Speed==0){Compare=7;}
+  57   3          }
+  58   2          Nixie(1,Speed);
+  59   2        }
+  60   1      }
+  61          
+  62          
+  63          void Timer0() interrupt 1
+  64          {
+  65   1        TL0 = 0xA4;   //设置定时初值
+  66   1        TH0 = 0xFF;   //设置定时初值
+  67   1        Counter++;
+  68   1        Counter%=200;
+  69   1        if (Counter<Compare)
+  70   1        {
+  71   2          sg90=1;
+  72   2        }
+  73   1        else
+  74   1        {
+  75   2          sg90=0;
+  76   2        }
+  77   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    281    ----
+   CODE SIZE        =    272    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =      3    ----
+   DATA SIZE        =      4    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
